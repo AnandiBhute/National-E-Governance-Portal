@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Applications - E-Governance Portal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>National E-Governance Portal</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/services">Services</a>
+            <a href="/track">Track Application</a>
+            <a href="/my-applications">My Applications</a>
+            <a href="/logout">Logout</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>My Applications</h2>
+
+        {% with messages = get_flashed_messages() %}
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        {% endwith %}
+
+        {% if applications %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>Application ID</th>
+                        <th>Service</th>
+                        <th>Applicant Name</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for application in applications %}
+                        <tr>
+                            <td>APP-{{ "%05d"|format(application.id) }}</td>
+                            <td>{{ application.service_name }}</td>
+                            <td>{{ application.full_name }}</td>
+                            <td>{{ application.status }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>You have not submitted any applications yet.</p>
+        {% endif %}
+
+        <p><a href="/services">Apply for another service</a></p>
+    </main>
+</body>
+</html>

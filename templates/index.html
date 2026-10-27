@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>National E-Governance Portal</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <header>
+        <h2>National E-Governance Portal</h2>
+
+        <nav>
+            <a href="/">Home</a>
+            <a href="/services">Services</a>
+            <a href="/track">Track Application</a>
+            <a href="/my-applications">My Applications</a>
+            {% if session.get('user_id') %}
+                <a href="/logout">Logout</a>
+            {% else %}
+                <a href="/login">Login</a>
+                <a href="/register">Register</a>
+            {% endif %}
+        </nav>
+    </header>
+
+    <main>
+        <section class="welcome">
+            <h1>Welcome to the National E-Governance Portal</h1>
+            {% with messages = get_flashed_messages() %}
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            {% endwith %}
+
+            <p>
+                This portal helps citizens access government services
+                online. You can create an account, apply for services,
+                and check the status of your applications.
+            </p>
+
+            <a class="button" href="/register">Register Now</a>
+            <a class="button secondary" href="/services">View Services</a>
+        </section>
+
+        <section class="services">
+            <h2>What can you do here?</h2>
+
+            <div class="service-container">
+                <div class="service-card">
+                    <h3>User Registration</h3>
+                    <p>
+                        Create an account to use the portal's services.
+                    </p>
+                    <a href="/register">Register here</a>
+                </div>
+
+                <div class="service-card">
+                    <h3>Government Services</h3>
+                    <p>
+                        View available services and submit applications.
+                    </p>
+                    <a href="/services">Explore services</a>
+                </div>
+
+                <div class="service-card">
+                    <h3>Application Tracking</h3>
+                    <p>
+                        Check the status of an application you submitted.
+                    </p>
+                    <a href="/track">Track application</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="about">
+            <h2>About this portal</h2>
+            <p>
+                The aim of this project is to make accessing public
+                services easier by providing a single online platform.
+            </p>
+        </section>
+    </main>
+
+    <footer>
+        <p>National E-Governance Portal | SE Lab Assessment Project</p>
+    </footer>
+
+</body>
+</html>

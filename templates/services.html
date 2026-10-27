@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Government Services</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <header>
+        <h2>National E-Governance Portal</h2>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/services">Services</a>
+            <a href="/track">Track Application</a>
+            <a href="/login">Login</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="welcome">
+            <h1>Available Government Services</h1>
+            <input
+                type="text"
+                id="serviceSearch"
+                placeholder="Search for a government service..."
+                onkeyup="searchServices()"
+            >
+            <p>Select a service to begin your application.</p>
+        </section>
+
+        <section class="services">
+            <div class="service-container">
+
+                <div class="service-card">
+                    <h3>Income Certificate</h3>
+                    <p>Apply for an income certificate.</p>
+                    <a href="/apply/Income%20Certificate">Apply Now</a>
+                </div>
+
+                <div class="service-card">
+                    <h3>Residence Certificate</h3>
+                    <p>Apply for a residence certificate.</p>
+                    <a href="/apply/Residence%20Certificate">Apply Now</a>
+                </div>
+
+                <div class="service-card">
+                    <h3>Birth Certificate</h3>
+                    <p>Apply for a birth certificate.</p>
+                    <a href="/apply/Birth%20Certificate">Apply Now</a>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>National E-Governance Portal | SE Lab Assessment Project</p>
+    </footer>
+
+
+<script>
+    function searchServices() {
+        const searchInput = document.getElementById("serviceSearch");
+        const searchText = searchInput.value.toLowerCase();
+
+        const serviceCards = document.querySelectorAll(".service-card");
+
+        serviceCards.forEach(function(card) {
+            const serviceName = card.textContent.toLowerCase();
+
+            if (serviceName.includes(searchText)) {
+                card.style.display = "";
+            } else {
+                card.style.display = "none";
+            }
+        });
+    }
+</script>
+
+</body>
+</html>

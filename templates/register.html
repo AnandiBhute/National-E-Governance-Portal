@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Registration</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <header>
+        <h2>National E-Governance Portal</h2>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/login">Login</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="welcome">
+            <h1>Create an Account</h1>
+            <p>Enter your details to register on the portal.</p>
+            {% with messages = get_flashed_messages() %}
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            {% endwith %}
+
+            <form action="/register" method="POST">
+                <p>
+                    <label for="name">Full Name</label><br>
+                    <input type="text" id="name" name="name"
+                           required>
+                </p>
+
+                <p>
+                    <label for="email">Email Address</label><br>
+                    <input type="email" id="email" name="email"
+                           required>
+                </p>
+
+                <p>
+                    <label for="password">Password</label><br>
+                    <input type="password" id="password"
+                           name="password" required>
+                </p>
+
+                <button class="button" type="submit">
+                    Register
+                </button>
+            </form>
+
+            <p>Already registered? <a href="/login">Login here</a></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>National E-Governance Portal | SE Lab Assessment Project</p>
+    </footer>
+
+</body>
+</html>

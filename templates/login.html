@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Login</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <header>
+        <h2>National E-Governance Portal</h2>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/register">Register</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="welcome">
+            <h1>Login</h1>
+            <p>Enter your registered email and password.</p>
+
+            {% with messages = get_flashed_messages() %}
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
+            {% endwith %}
+
+            <form action="/login" method="POST">
+                <p>
+                    <label for="email">Email Address</label><br>
+                    <input type="email" id="email" name="email"
+                           required>
+                </p>
+
+                <p>
+                    <label for="password">Password</label><br>
+                    <input type="password" id="password"
+                           name="password" required>
+                </p>
+
+                <button class="button" type="submit">Login</button>
+            </form>
+
+            <p>Don't have an account? <a href="/register">Register here</a></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>National E-Governance Portal | SE Lab Assessment Project</p>
+    </footer>
+
+</body>
+</html>
